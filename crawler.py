@@ -7,12 +7,16 @@ def get_tafsir(surat, ayat):
 	url = 'http://quran.ksu.edu.sa/interface.php?ui=pc&do=tafsir&author=indonesian&sura='+str(surat)+'&aya='+str(ayat);
 	html = urllib.urlopen(url).read()
 	parsed_html = BeautifulSoup(html, 'lxml')
-	return parsed_html.body.find('div', attrs={'class':'tafheem_comments'}).text
+	try:
+		text_tafsir = parsed_html.body.find('div', attrs={'class':'tafheem_comments'}).text
+	except Exception, e:
+		text = "error"
+	return text_tafsir
 
 def do_crawl(surats):
 	result = []
 	for surat in surats:
-		for ayat in xrange(1,surat['ayat']):
+		for ayat in xrange(1,surat['ayat']+1):
 			print "*********** QS {0} - Ayat {1}".format(surat['nama'], ayat)
 			t = { 'surat' : 1, 'ayat' : ayat, 'tafsir' : get_tafsir(surat['no'],ayat) }
 			print t['tafsir']

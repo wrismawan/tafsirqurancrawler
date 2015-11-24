@@ -40,7 +40,7 @@ def reformat_data_surat():
 	writeJSON(json.dumps(surat_list), "surat.json")
 
 def save_result(surat, ayat, result):
-	fileName = "result_{0}_{1}.json"
+	fileName = "result_{0}_{1}.json".format(surat, ayat)
 	writeJSON(json.dumps(result), fileName)
 
 def do_crawl(surats):

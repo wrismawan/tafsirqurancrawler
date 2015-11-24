@@ -60,10 +60,10 @@ def do_crawl(surats):
 			result.append({ 'surat' : 1, 'ayat' : ayat, 'tafsir' :  tafsir })
 
 			
-	save_result(surat=surat['nama'], ayat=ayat, result=tafsir)
+	save_result(surat=surat['nama'], ayat=ayat, result=result)
 	
 def __main__():
 	surats = readJSON("surat.json")
-	do_crawl(surats[:30])
+	do_crawl(surats[:5])
 
 __main__()

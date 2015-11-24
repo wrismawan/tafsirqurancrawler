@@ -10,7 +10,7 @@ def get_tafsir(surat, ayat):
 	try:
 		text_tafsir = parsed_html.body.find('div', attrs={'class':'tafheem_comments'}).text
 	except Exception, e:
-		text = "error"
+		text_tafsir = "error"
 	return text_tafsir
 
 def do_crawl(surats):

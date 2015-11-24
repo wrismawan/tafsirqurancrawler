@@ -49,21 +49,22 @@ def do_crawl(surats):
 		for ayat in xrange(1,surat['ayat']+1):
 			tafsir = get_tafsir(surat['no'],ayat)
 			
-			print "*********** QS {0} - Ayat {1} **********".format(surat['nama'], ayat)
-			print tafsir
-			
 			# if request error, save current tafsir result (backup)
 			if (tafsir == REQUEST_ERROR):
 				save_result(surat=surat['nama'], ayat=ayat, result=tafsir)
 				print "****** REQUEST ERROR ******"
 			
-			result.append({ 'surat' : 1, 'ayat' : ayat, 'tafsir' :  tafsir })
+			t = { 'surat' : surat["no"], 'ayat' : ayat, 'tafsir' :  tafsir }
+			result.append(t)
+
+			print "*********** QS {0} - Ayat {1} **********".format(surat['nama'], ayat)
+			print t
 
 			
 	save_result(surat=surat['nama'], ayat=ayat, result=result)
-	
+
 def __main__():
 	surats = readJSON("surat.json")
-	do_crawl(surats[:5])
+	do_crawl(surats)
 
 __main__()

@@ -51,13 +51,14 @@ def do_crawl(surats):
 			
 			# if request error, save current tafsir result (backup)
 			if (tafsir == REQUEST_ERROR):
-				save_result(surat=surat['nama'], ayat=ayat, result=tafsir)
+				save_result(surat=surat['nama'], ayat=ayat, result=result)
 				print "****** REQUEST ERROR ******"
+				return 
 			
 			t = { 'surat' : surat["no"], 'ayat' : ayat, 'tafsir' :  tafsir }
 			result.append(t)
 
-			print "*********** QS {0} - Ayat {1} **********".format(surat['nama'], ayat)
+			print "*********** {0} - Ayat {1} **********".format(surat['nama'], ayat)
 			print t
 
 			
@@ -68,3 +69,4 @@ def __main__():
 	do_crawl(surats)
 
 __main__()
+

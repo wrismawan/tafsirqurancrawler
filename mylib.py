@@ -35,7 +35,7 @@ def readFromCSV(filename):
 def writeToCSV(listData, fileName):
     file_data = fileName
     with open(file_data, 'wb') as csvfile:
-        writer = csv.writer(csvfile, delimiter=',')
+        writer = csv.writer(csvfile, delimiter='|')
         for i in listData:
             writer.writerow(i, )
     return file_data
